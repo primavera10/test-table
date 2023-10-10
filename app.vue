@@ -1,6 +1,10 @@
 <template>
   <UContainer>
-    <UTable :rows="data.posts" :columns="columns"/>
+    <UTable :rows="data.posts" :columns="columns">
+      <template #tags-data="{ row }">
+        <UBadge v-for="tag in row.tags" :key="tag" class="ml-2">{{ tag }}</UBadge>
+      </template>
+    </UTable>
   </UContainer>
 </template>
 
