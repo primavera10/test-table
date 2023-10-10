@@ -34,6 +34,9 @@
             {{ tag }}
           </UBadge>
         </UFormGroup>
+        <UFormGroup label="Comments" class="mt-4">
+          <Comments :post-id="selectedItem.id" />
+        </UFormGroup>
         <template #footer>
           <UButton @click="isOpen = false">
             Close
