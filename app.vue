@@ -1,26 +1,27 @@
 <template>
-    <UContainer>
-      <div v-if="checkDataArr">
-        <UTable  v-if="dataArr" :rows="dataArr.posts"></UTable>
-      </div>
-    </UContainer>
+  <UContainer>
+    <UTable :rows="data.posts" :columns="columns"/>
+  </UContainer>
 </template>
 
 <script setup lang="ts">
+  const { data } = await useFetch('https://dummyjson.com/posts');
 
-  import { onMounted } from "vue";
-
-  let dataArr;
-
-  onMounted(async () => {
-    const data = await fetch('https://dummyjson.com/posts')
-    dataArr = await data.json()
-
-    console.log(dataArr)
-  })
-
-  function checkDataArr(){
-    return !!dataArr;
-  }
-
+  const columns = [{
+    key: 'id',
+    label: 'Id'
+  },
+    {
+      key: 'title',
+      label: 'Title',
+    },
+    {
+      key: 'tags',
+      label: 'Tags'
+    },
+    {
+      key: 'reactions',
+      label: 'Reactions'
+    }
+  ];
 </script>
